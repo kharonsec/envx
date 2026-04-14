@@ -1,27 +1,39 @@
-# envx
+# envx - Environment and Secrets Manager
 
-Environment and secrets manager. Stores project-specific environment variables encrypted locally.
+`envx` is a secure environment and secrets manager for your projects. It allows you to store project-specific environment variables encrypted locally using AES-256-GCM and inject them into commands.
 
 ## Installation
 
+### One-liner (requires Rust/Cargo)
 ```bash
-cargo install --path .
+curl -fsSL https://raw.githubusercontent.com/kharonsec/envx/master/install.sh | bash
+```
+
+### Manual
+```bash
+git clone https://github.com/kharonsec/envx.git
+cd envx
+./install.sh
 ```
 
 ## Usage
 
+### Set an environment variable (encrypted)
 ```bash
-envx [COMMAND]
+envx set KEY=VALUE
 ```
 
-### Commands:
-- `envx`: List all environment variables for the current project.
-- `envx set KEY=VALUE`: Set an environment variable (encrypted).
-- `envx inject <command>`: Run a command with loaded environment variables.
-- `envx sync`: Sync environment variables (stub).
-
-Example:
+### List variables for the current project
 ```bash
-envx set API_KEY=secret123
+envx list
+```
+
+### Inject variables into a command
+```bash
 envx inject cargo run
+```
+
+### Sync variables (stub)
+```bash
+envx sync
 ```
